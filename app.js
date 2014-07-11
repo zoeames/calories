@@ -27,7 +27,6 @@ if (option === 'y'){
 
   option = prompt(chalk.yellow('Would you like to add a food item? (y/n) '));
 }else{
-  //console.log('You have entered in all your food.');
   break;
 }
 
@@ -38,27 +37,9 @@ for (i=0; i<calories.length; i++){
 sumCal = sumCal + calories[i]
 }
 
-var finalWeight=0;
-//female male
-if (gender != 'm'){
-//female
-  deltaWeight=sumCal/3000;
-  if (deltaWeight>=1) {
-    finalWeight=weight+deltaWeigh;
-  }else{
-    finalWeight = weight;
-  }
-}else{
-//male
-  deltaWeight=sumCal/4000;
-  if (deltaWeight>=1) {
-    finalWeight=weight+deltaWeight;
-  }else{
-    finalWeight = weight;
-    deltaWeight = 0;
-  }
-}
-
+//add weight
+var finalWeight=weight;
+finalWeight += gender === 'f' ? sumCal/3000 : sumCal/4000
 
 console.log(chalk.green('You have eaten the following items today:'));
 for (k=0; k<foods.length; k++){
@@ -66,7 +47,5 @@ for (k=0; k<foods.length; k++){
 }
 
 console.log('The total number of calories you consumed today is '+ chalk.bold.underline.white(sumCal));
-console.log('You gained '+chalk.bold.underline.white(deltaWeight.toFixed(2))+' pounds today.');
 console.log('Your final weight is '+chalk.bold.underline.white(finalWeight.toFixed(1))+' pounds.');
-//console.log(foods);
 
